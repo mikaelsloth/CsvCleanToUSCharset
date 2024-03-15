@@ -2,12 +2,13 @@ namespace CsvCleanToUSCharset
 {
     using System.Collections.Concurrent;
     using System.ComponentModel;
-    using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
 
     public partial class Form1 : Form
     {
         private bool SkipFirstRow { get; set; }
+        private char Separator { get; set; } = ',';
+        private char? Delimiter { get; set; }
 
         private readonly ConcurrentDictionary<int, string> LogInfo = new();
 
@@ -39,7 +40,7 @@ namespace CsvCleanToUSCharset
             try
             {
                 cts.CancelAfter(10000);
-                if (await Processor.ProcessFileAsync(InputFile, SkipFirstRow, LogInfo, cts.Token))
+                if (await Processor.ProcessFileAsync(InputFile, SkipFirstRow, Separator, Delimiter, LogInfo, cts.Token))
                 {
                     UpdateLog("Operations completed", LogInfo);
 
@@ -121,6 +122,32 @@ namespace CsvCleanToUSCharset
         private void HeaderLineCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             SkipFirstRow = HeaderLineCheckbox.Checked;
+        }
+
+        private void SeparatorTextbox_Validating(object sender, CancelEventArgs e)
+        {
+            if (SeparatorTextbox.Text.Length > 1)
+            {
+                MessageBox.Show($"The separator must be a single character - likely <none>, <comma>, <semicolon>, or <pipe>. \r\nPlease correct your input.");
+                SeparatorTextbox.Text = ",";
+                e.Cancel = true;
+            }
+            Separator = SeparatorTextbox.Text[0];
+        }
+
+        private void DelimeterTextbox_Validating(object sender, CancelEventArgs e)
+        {
+            if (DelimeterTextbox.Text.Length > 1)
+            {
+                MessageBox.Show($"The delimeter must be a single character - likely <none>, <comma>, <semicolon>, or <pipe>. \r\nPlease correct your input.");
+                DelimeterTextbox.Text = string.Empty;
+                e.Cancel = true;
+            }
+            Delimiter = DelimeterTextbox.Text.Length switch
+            {
+                1 => DelimeterTextbox.Text[0],
+                _ => null
+            };
         }
     }
 }
