@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvCleanToUSCharset", "CsvCleanToUSCharset\CsvCleanToUSCharset.csproj", "{CE7FFA44-21FD-401E-94FF-F42229266BD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE7FFA44-21FD-401E-94FF-F42229266BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7FFA44-21FD-401E-94FF-F42229266BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7FFA44-21FD-401E-94FF-F42229266BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7FFA44-21FD-401E-94FF-F42229266BD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FB2209C-E6C2-48AE-9BB5-DEE669EFFD6A}
+	EndGlobalSection
+EndGlobal
