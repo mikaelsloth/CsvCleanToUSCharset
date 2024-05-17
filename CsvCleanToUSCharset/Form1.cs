@@ -73,7 +73,10 @@ namespace CsvCleanToUSCharset
             UpdateLog("The following details were recorded from the operation:\r\n");
             for (int i = 0; i < logInfo.Count; i++)
             {
-                UpdateLog(logInfo[i] + "\r\n");
+                if (logInfo.TryGetValue(i, out string? result))
+                {
+                    UpdateLog(result ?? string.Empty + "\r\n");
+                }
             }
             UpdateLog("\r\nThe results have been copied to the clipboard.");
         }
